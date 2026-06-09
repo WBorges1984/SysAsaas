@@ -1,13 +1,13 @@
-import '../../global.css'
-import '../../theme.css'
+import './global.css'
+import './theme.css'
+import AppRoutes from './AppRoutes.jsx'
 import './App.css'
-import { Login } from './pages/login/Login'
 
 function App() {
 
   return (
     <div className="App">
-      <Login />
+      <AppRoutes />
     </div>
   )
 }
