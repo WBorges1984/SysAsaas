@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { ItemMenu } from "../../components/itemMenu/ItemMenu";
 import Logo from "../../components/logo/Logo";
 import style from "./style.module.css";
+import shared from "../../../shared.module.css";
 
 
 export default function Dashboard() {
@@ -26,7 +27,7 @@ export default function Dashboard() {
           </ul>
         </div>
       </div>
-      <div className={style.containerContent}>
+      <div className={style.containerContent + ' ' + shared.bgPadrao}>
         <Outlet />
       </div>
     </div>

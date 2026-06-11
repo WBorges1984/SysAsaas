@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const ItemMenu = ({ titulo, icon, pagina }) => {
 
   return (
-    <Link to={pagina} className={style.itemMenu} data-bs-toggle="tooltip" title={titulo}>   
+    <Link to={pagina} className={style.itemMenu} title={titulo}>   
         <div className={style.itemMenuIcon}>
             {icon}
         </div>
