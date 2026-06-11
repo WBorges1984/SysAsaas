@@ -3,8 +3,8 @@ import style from './style.module.css'
 import { Link } from 'react-router-dom';
 
 export function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('willian.borges@hotmail.com.br');
+  const [password, setPassword] = useState('123456');
 
     
   function navegarParaDashboard() {

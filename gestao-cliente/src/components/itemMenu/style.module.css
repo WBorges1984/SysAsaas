@@ -1,0 +1,19 @@
+.itemMenu{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    gap: 5px;
+    text-decoration: none;
+}
+
+.itemMenu:hover {
+    background-color: #f0f0f062;
+    border-radius: 5px;
+}
+
+.itemMenuName{
+    font-size: 16px;
+    color: #dfdfdf;
+}

@@ -1,22 +1,24 @@
 import PropTypes from 'prop-types';
+import style from "./style.module.css";
+import { Link } from 'react-router-dom';
 
-ItemMenu.propTypes = {
-  item: PropTypes.shape({
-    icon: PropTypes.node.isRequired,
-    name: PropTypes.string.isRequired
-  }).isRequired,
-  onClick: PropTypes.func.isRequired
-};
+export const ItemMenu = ({ titulo, icon, pagina }) => {
 
-export const ItemMenu = ({ item, onClick }) => {
   return (
-    <div className="item-menu" onClick={onClick}>   
-        <div className="item-menu__icon">
-            {item.icon}
+    <Link to={pagina} className={style.itemMenu} data-bs-toggle="tooltip" title={titulo}>   
+        <div className={style.itemMenuIcon}>
+            {icon}
         </div>
-        <div className="item-menu__name">   
-            {item.name}
+
+        <div className={style.itemMenuName}>   
+            {titulo}
         </div>
-    </div>
+    </Link>
   );
 }
+
+ItemMenu.propTypes = {
+  titulo: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+  pagina: PropTypes.string.isRequired,
+};
