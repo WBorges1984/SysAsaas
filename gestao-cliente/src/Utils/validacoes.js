@@ -2,7 +2,6 @@ export const validarRegistro = (dados) => {
  
   const erros = [];
 
-
   if (!dados.username.trim()) erros.push('O nome de usuário não pode estar vazio!');
   if (!dados.email.includes('@')) erros.push('Por favor, insira um email válido!');
   if (!dados.password.trim()) erros.push('A senha não pode estar vazia!');

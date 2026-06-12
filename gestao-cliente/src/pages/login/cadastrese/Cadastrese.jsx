@@ -23,7 +23,7 @@ export function Cadastrese() {
 
   if (!validacao.valido) {
     alert(validacao.erros[0]); 
-    return; // Para a função aqui
+    return;
   }
 
   let userData = {
