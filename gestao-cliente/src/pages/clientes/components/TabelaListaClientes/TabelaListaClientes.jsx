@@ -41,11 +41,12 @@ const TabelaListaClientes = () => {
                   {customer.status.text}
                 </span>
               </td>
-
               <td className={style.actionsCell}>
                 <button className={index === 0 ? style.highlightedAction : ""}>
-                  {editIcon}
-                  {trashIcon}
+                  <img src={editIcon} alt="Editar" width={25} className={style.actionIcon} />
+                </button>
+                <button className={index === 0 ? style.highlightedAction : ""}>
+                  <img src={trashIcon} alt="Excluir"  width={25} className={style.actionIcon} />  
                 </button>
               </td>
             </tr>

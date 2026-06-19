@@ -108,6 +108,11 @@
   color: #2d3748;
 }
 
+.highlightedAction{
+  border: none;
+  background: none;
+}
+
 /* Estilo do destaque vermelho na primeira ação, como na imagem */
 .highlighted-action {
   display: inline-flex;
