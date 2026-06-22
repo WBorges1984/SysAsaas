@@ -58,4 +58,6 @@
     align-items: center;
     color: var(--gray-100);
     font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gray-900);
 }
