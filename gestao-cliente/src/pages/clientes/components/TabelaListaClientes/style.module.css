@@ -1,5 +1,5 @@
 /* Estilos Gerais do Contêiner */
-.table-container {
+.tablecontainer {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: #f4f7f6;
   padding: 20px;
@@ -8,9 +8,7 @@
 }
 
 /* Estilos Básicos da Tabela */
-.customer-table {
-  width: 100%;
-  max-width: 1200px;
+.customertable {
   border-collapse: collapse;
   background-color: #ffffff;
   border-radius: 8px;
@@ -19,12 +17,12 @@
 }
 
 /* Estilos do Cabeçalho */
-.customer-table thead {
+.customerTable thead {
   background-color: #f8fafc;
   border-bottom: 2px solid #e2e8f0;
 }
 
-.customer-table th {
+.customerTable th {
   text-align: left;
   padding: 16px;
   font-weight: 600;
@@ -42,18 +40,22 @@
 }
 
 /* Estilos das Linhas de Dados */
-.customer-table tbody tr {
+.customerTable tbody tr {
   border-bottom: 1px solid #e2e8f0;
   transition: background-color 0.2s;
 }
 
-.customer-table tbody tr:hover {
-  background-color: #f7fafc;
+.customerTable tbody td:hover {
+  background-color: var(--gray-300);
 }
 
-.customer-table td {
+.customerTable td {
+  background-color: var(--gray-100);
+}
+
+.customerTable td {
   padding: 16px;
-  color: #2d3748;
+  color: var(--gray-900);
   font-size: 14px;
 }
 
@@ -92,10 +94,14 @@
 }
 
 /* Estilos da Célula de Ações */
-.actions-cell {
+.actionsCell {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.highlightedAction:hover{
+ filter: grayscale(10%) blur(2px);
 }
 
 .icon-action {
@@ -111,6 +117,8 @@
 .highlightedAction{
   border: none;
   background: none;
+  display: inline-flex;
+  flex-direction: row;
 }
 
 /* Estilo do destaque vermelho na primeira ação, como na imagem */
