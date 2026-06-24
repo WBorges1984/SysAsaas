@@ -189,9 +189,11 @@ name: 'John Doe',
     mobilePhone: '4799376637',
     address: 'Av. Paulista',
     addressNumber: '150',
-    complement: 'Sala 201',
+    complement: 'Sala 201',  *******
     province: 'Centro',
     postalCode: '01310-000',
+
+
     externalReference: '12987382',
     notificationDisabled: false,
     additionalEmails: 'john.doe@asaas.com,john.doe.silva@asaas.com.br',
