@@ -1,17 +1,14 @@
 import style from "./style.module.css";
-import { IoMdAddCircle, IoMdArrowBack } from "react-icons/io"; // Importei um ícone de voltar também
+import { IoMdAddCircle, IoMdArrowBack } from "react-icons/io";
 
 export default function TopoCliente({ aoClicarEmNovo, aoVoltar, telaAtual }) {
   return (
     <div className={style.topoContainer}>
-      {/* Altera o título dinamicamente com base na tela */}
       <h1>{telaAtual === "lista" ? "Cliente" : "Cadastro de Cliente"}</h1>
       
       <div className={"d-flex gap-2 "}>
         {telaAtual === "lista" ? (
-          /* --- SE ESTIVER NA LISTA: Mostra todos os controles normais --- */
           <>
-            {/* Adicionado o onClick aqui */}
             <button className={style.topoAcoesadd} onClick={aoClicarEmNovo}>
               <h4 className={style.topoAcoesaddText}>
                 <IoMdAddCircle /> NOVO CLIENTE
@@ -33,7 +30,6 @@ export default function TopoCliente({ aoClicarEmNovo, aoVoltar, telaAtual }) {
             </div>
           </>
         ) : (
-          /* --- SE ESTIVER NO CADASTRO: Mostra apenas o botão de voltar --- */
           <button className="btn btn-secondary d-flex align-items-center gap-2" onClick={aoVoltar}>
             <IoMdArrowBack /> Voltar para a Lista
           </button>

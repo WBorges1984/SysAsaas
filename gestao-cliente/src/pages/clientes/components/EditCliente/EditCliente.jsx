@@ -1,22 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CadCliente = ({ aoVoltar }) => {
+const EditCliente = ({ cliente, aoVoltar }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    cpfCnpj: "",
-    email: "",
-    company: "",
-    mobilePhone: "",
-    address: "",
-    complement: "",
-    addressNumber: "",
-    province: "",
-    postalCode: "",
-    additionalEmails: "",
-    observations:""
+    name: cliente?.name || "",
+    cpfCnpj: cliente?.cpfCnpj || "",
+    email: cliente?.email || "",
+    company: cliente?.company || "",
+    mobilePhone: cliente?.mobilePhone || "",
+    address: cliente?.address || "",
+    complement: cliente?.complement || "",
+    addressNumber: cliente?.addressNumber || "",
+    province: cliente?.province || "",
+    postalCode: cliente?.postalCode || "",
+    additionalEmails: cliente?.additionalEmails || "",
+    observations: cliente?.observations || ""
   });
 
   const [carregando, setCarregando] = useState(false);
+
+  useEffect(() => {
+    if (cliente) {
+      setFormData({
+        name: cliente.name || "",
+        cpfCnpj: cliente.cpfCnpj || "",
+        email: cliente.email || "",
+        company: cliente.company || "",
+        mobilePhone: cliente.mobilePhone || "",
+        address: cliente.address || "",
+        complement: cliente.complement || "",
+        addressNumber: cliente.addressNumber || "",
+        province: cliente.province || "",
+        postalCode: cliente.postalCode || "",
+        additionalEmails: cliente.additionalEmails || "",
+        observations: cliente.observations || ""
+      });
+    }
+  }, [cliente]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,13 +45,13 @@ const CadCliente = ({ aoVoltar }) => {
     }));
   };
 
-  const salvarDados = async (e) => {
+  const atualizarDados = async (e) => {
     e.preventDefault();
     setCarregando(true);
 
     try {
-      const response = await fetch("http://localhost:3001/api/clientes-asaas", {
-        method: "POST",
+      const response = await fetch(`http://localhost:3001/api/clientes-asaas/${cliente.id}`, {
+        method: "POST", 
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,10 +61,10 @@ const CadCliente = ({ aoVoltar }) => {
       const dados = await response.json();
 
       if (!response.ok) {
-        throw new Error(dados.error || "Erro ao cadastrar cliente.");
+        throw new Error(dados.error || "Erro ao atualizar cliente.");
       }
 
-      alert("Cliente cadastrado com sucesso no Asaas!");
+      alert("Cliente atualizado com sucesso no Asaas!");
       aoVoltar(); 
     } catch (err) {
       alert(`⚠️ Erro: ${err.message}`);
@@ -56,8 +75,9 @@ const CadCliente = ({ aoVoltar }) => {
 
   return (
     <div className="container mt-4 p-4 bg-white rounded shadow-sm">
-      <form onSubmit={salvarDados}>
-        <h5 className="text-secondary mb-3">Dados Pessoais</h5>
+      <form onSubmit={atualizarDados}>
+        
+        <h5 className="text-secondary mb-3">Editar Dados Pessoais</h5>
         <div className="row g-3 mb-4">
           <div className="col-md-6">
             <label className="form-label">Nome Completo / Razão Social *</label>
@@ -71,14 +91,13 @@ const CadCliente = ({ aoVoltar }) => {
             />
           </div>
           <div className="col-md-6">
-            <label className="form-label">CPF ou CNPJ (Apenas números) *</label>
+            <label className="form-label">CPF ou CNPJ (Não alterável)</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-light"
               name="cpfCnpj"
               value={formData.cpfCnpj}
-              onChange={handleChange}
-              required
+              disabled 
             />
           </div>
           <div className="col-md-6">
@@ -110,7 +129,6 @@ const CadCliente = ({ aoVoltar }) => {
               name="mobilePhone"
               value={formData.mobilePhone}
               onChange={handleChange}
-              placeholder="Ex: 21999999999"
             />
           </div>
           <div className="col-md-4">
@@ -125,7 +143,6 @@ const CadCliente = ({ aoVoltar }) => {
           </div>
         </div>
 
-        {/* Seção: Endereço (Opcional, mas bom ter) */}
         <h5 className="text-secondary mb-3">Endereço</h5>
         <div className="row g-3 mb-4">
           <div className="col-md-4">
@@ -179,17 +196,18 @@ const CadCliente = ({ aoVoltar }) => {
             />
           </div>
         </div>
-        <div className="col-md-4">
+        
+        <div className="col-md-12 mb-4">
           <label className="form-label">Observação</label>
           <textarea
             className="form-control"
             name="observations"
             value={formData.observations}
             onChange={handleChange}
+            rows={3}
           ></textarea>
         </div>
 
-        {/* Botões de Ação */}
         <div className="d-flex gap-2 justify-content-end border-top pt-3">
           <button
             type="button"
@@ -201,10 +219,10 @@ const CadCliente = ({ aoVoltar }) => {
           </button>
           <button
             type="submit"
-            className="btn btn-success px-4"
+            className="btn btn-primary px-4"
             disabled={carregando}
           >
-            {carregando ? "Salvando..." : "Salvar Cliente"}
+            {carregando ? "Atualizando..." : "Salvar Alterações"}
           </button>
         </div>
       </form>
@@ -212,4 +230,4 @@ const CadCliente = ({ aoVoltar }) => {
   );
 };
 
-export default CadCliente;
+export default EditCliente;

@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { editIcon, trashIcon } from "../../../../ImagensIcon/ImagensIcons";
 import style from "./style.module.css"; 
 
-const TabelaListaClientes = () => {
-
+const TabelaListaClientes = ({ aoEditar }) => {
   const [clientes, setClientes] = useState([]); 
 
   useEffect(() => {
@@ -12,24 +11,19 @@ const TabelaListaClientes = () => {
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
-        // 2. O Asaas envia os clientes dentro de json.data
         setClientes(json.data); 
-        console.log(clientes)
       })
       .catch((err) => console.error("Erro ao buscar dados:", err));
   }, []);
 
-
-
-  // Componentes de ícone simples usando SVG (para não precisar de bibliotecas externas)
   return (
     <div className={style.tableContainer}>
       <table className={style.customerTable}>
         <thead>
           <tr>
-            <th>Nome/Razão Social </th>
-            <th>Telefone </th>
-            <th>Email </th>
+            <th>Nome/Razão Social</th>
+            <th>Telefone</th>
+            <th>Email</th>
             <th>Status</th>
             <th>Ações</th>
           </tr>
@@ -42,12 +36,16 @@ const TabelaListaClientes = () => {
               <td>{customer.email}</td>
 
               <td>
-                <span className={`status-pill ${customer.deleted}`}>
-                  {customer.deleted}
+                <span className={`status-pill ${customer.deleted ? "inativo" : "ativo"}`}>
+                  {customer.deleted ? "Inativo" : "Ativo"}
                 </span>
               </td>
               <td className={style.actionsCell}>
-                <button className={style.highlightedAction}>
+                
+                <button 
+                  className={style.highlightedAction} 
+                  onClick={() => aoEditar(customer)}
+                >
                   <img
                     src={editIcon}
                     alt="Editar"
@@ -55,6 +53,7 @@ const TabelaListaClientes = () => {
                     className={style.actionIcon}
                   />
                 </button>
+                
                 <button className={style.highlightedAction}>
                   <img
                     src={trashIcon}
