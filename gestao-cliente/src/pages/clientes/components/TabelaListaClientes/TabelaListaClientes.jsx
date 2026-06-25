@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { editIcon, trashIcon } from "../../../../ImagensIcon/ImagensIcons";
-import style from "./style.module.css"; 
+import style from "./style.module.css";
 
 const TabelaListaClientes = ({ aoEditar }) => {
-  const [clientes, setClientes] = useState([]); 
+  const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
     const url = "http://localhost:3001/api/clientes-asaas";
@@ -11,7 +11,7 @@ const TabelaListaClientes = ({ aoEditar }) => {
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
-        setClientes(json.data); 
+        setClientes(json.data);
       })
       .catch((err) => console.error("Erro ao buscar dados:", err));
   }, []);
@@ -36,14 +36,23 @@ const TabelaListaClientes = ({ aoEditar }) => {
               <td>{customer.email}</td>
 
               <td>
-                <span className={`status-pill ${customer.deleted ? "inativo" : "ativo"}`}>
-                  {customer.deleted ? "Inativo" : "Ativo"}
+                <span
+                  className={`status-pill ${customer.deleted ? "inativo" : "ativo"}`}
+                >
+                  {customer.deleted ? (
+                    <button className="btn btn-danger" disabled>
+                      Inativo
+                    </button>
+                  ) : (
+                    <button className="btn btn-info disabled">
+                      Ativo
+                    </button>
+                  )}
                 </span>
               </td>
               <td className={style.actionsCell}>
-                
-                <button 
-                  className={style.highlightedAction} 
+                <button
+                  className={style.highlightedAction}
                   onClick={() => aoEditar(customer)}
                 >
                   <img
@@ -53,7 +62,7 @@ const TabelaListaClientes = ({ aoEditar }) => {
                     className={style.actionIcon}
                   />
                 </button>
-                
+
                 <button className={style.highlightedAction}>
                   <img
                     src={trashIcon}
